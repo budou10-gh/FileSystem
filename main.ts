@@ -1,0 +1,8 @@
+fileSystem.write("hello.txt", "hello world")
+fileSystem.write("world.txt", "hello world")
+fileSystem.write("hoge.txt", "hello world")
+console.log(fileSystem.ls())
+console.log(fileSystem.md("a"))
+console.log(fileSystem.cd("b"))
+console.log(fileSystem.pwd())
+console.log(fileSystem.pwd())
