@@ -97,7 +97,13 @@ namespace fs {
     //% block="dir"
     //% weight=100
     export function dir() {
-        return dirList.concat(fileList)
+        const crnt_dirList = dirList.filter((item) => {
+            return item.slice(0, currentDir.length) === currentDir
+        })
+        const crnt_fileList = fileList.filter((item) => {
+            return item.slice(0, currentDir.length) === currentDir
+        })
+        return crnt_dirList.concat(crnt_fileList)
     }
 
     //% block="pwd"
