@@ -42,7 +42,7 @@ namespace fs {
         }
     }
 
-    //% block="rd"
+    //% block="rd $dir"
     //% weight=100
     export function rd(dir: string) {
         if (dirList.indexOf(dir) !== -1) {
@@ -81,7 +81,7 @@ namespace fs {
         }
     }
 
-    //% block="del"
+    //% block="del $file"
     //% weight=100
     export function del(file: string) {
         if (fileList.indexOf(file) !== -1) {
