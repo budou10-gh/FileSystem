@@ -79,4 +79,16 @@ namespace fs {
             return false
         }
     }
+
+    //% block="rd"
+    //% weight=100
+    export function rd(dir: string) {
+        if (dirList.indexOf(dir) !== -1) {
+            const indexOfDir: number = dirList.indexOf(dir)
+            dirList.splice(indexOfDir, 1)
+            return true
+        } else {
+            return false
+        }
+    }
 }
