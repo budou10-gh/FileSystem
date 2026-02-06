@@ -2,7 +2,7 @@
 //% color="#ffce59"
 //% block="FileSystem"
 namespace fs {
-    let currentDir = "./"
+    let currentDir = "/"
     let fileList: string[] = []
     let dirList: string[] = []
     let contentList: string[] = []
@@ -13,6 +13,16 @@ namespace fs {
         if (dirList.indexOf(currentDir + dir + "/") !== -1 && !dir.includes("/")) {
             currentDir = currentDir + dir + "/"
             return true
+        } else if (dir == "../") {
+            if(currentDir != "/"){
+                const pathArr = currentDir.split("/")
+                pathArr.pop() // Go to parent folder
+                pathArr.pop() // "/hoge/fuga/" -> ["", "hoge", "fuga", ""] -> ["", "hoge"] -> "/hoge/"
+                currentDir = pathArr.join("/")
+                return true
+            } else {
+                return false
+            }
         } else {
             return false
         }
