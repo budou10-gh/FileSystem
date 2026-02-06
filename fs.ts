@@ -10,7 +10,7 @@ namespace fs {
     //% block="cd $dir"
     //% weight=100
     export function cd(dir: string) {
-        if (dirList.indexOf(currentDir + dir) !== -1) {
+        if (dirList.indexOf(currentDir + dir + "/") !== -1 && !dir.includes("/")) {
             currentDir = currentDir + dir + "/"
             return true
         } else {
@@ -20,6 +20,9 @@ namespace fs {
     //% block="write name: $file content: $content"
     //% weight=100
     export function write(file: string, content: string) {
+        if (file.includes("/")) {
+            return false
+        }
         if (fileList.indexOf(currentDir + file) !== -1) {
             const index = fileList.indexOf(currentDir + file)
             fileList.splice(index, 1)
@@ -27,39 +30,53 @@ namespace fs {
         }
         fileList.push(currentDir + file)
         contentList.push(content)
+        return true
     }
 
     //% block="read $file"
     //% weight=100
     export function read(file: string) {
-        if (fileList.indexOf(currentDir + file) !== -1) {
+        if (fileList.indexOf(currentDir + file) !== -1 || !file.includes("/")) {
             const index = fileList.indexOf(currentDir + file)
             return contentList[index]
         } else {
-            return null
+            return ""
         }
     }
 
     //% block="md $dir"
     //% weight=100
     export function md(dir: string) {
-        if (dirList.indexOf(currentDir + "/" + dir) === -1) {
-            dirList.push(currentDir + "/" + dir)
+        if (dirList.indexOf(currentDir + "/" + dir + "/") === -1 && !dir.includes("/")) {
+            dirList.push(currentDir + "/" + dir + "/")
             return true
         } else {
             return false
         }
     }
 
-    //% block="ls"
+    //% block="dir"
     //% weight=100
-    export function ls() {
-        return fileList
+    export function dir() {
+        return dirList.concat(fileList)
     }
 
     //% block="pwd"
     //% weight=100
     export function pwd() {
         return currentDir
+    }
+
+    //% block="del"
+    //% weight=100
+    export function del(file: string) {
+        if (fileList.indexOf(file) !== -1){
+            const indexOfFile: number = fileList.indexOf(file)
+            fileList.splice(indexOfFile, 1)
+            contentList.splice(indexOfFile, 1)
+            return true
+        } else {
+            return false
+        }
     }
 }
