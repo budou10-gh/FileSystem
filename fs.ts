@@ -17,6 +17,30 @@ namespace fs {
             return false
         }
     }
+
+    //% block="md $dir"
+    //% weight=100
+    export function md(dir: string) {
+        if (dirList.indexOf(currentDir + dir + "/") === -1 && !dir.includes("/")) {
+            dirList.push(currentDir + dir + "/")
+            return true
+        } else {
+            return false
+        }
+    }
+
+    //% block="rd"
+    //% weight=100
+    export function rd(dir: string) {
+        if (dirList.indexOf(dir) !== -1) {
+            const indexOfDir: number = dirList.indexOf(dir)
+            dirList.splice(indexOfDir, 1)
+            return true
+        } else {
+            return false
+        }
+    }
+
     //% block="write name: $file content: $content"
     //% weight=100
     export function write(file: string, content: string) {
@@ -44,11 +68,13 @@ namespace fs {
         }
     }
 
-    //% block="md $dir"
+    //% block="del"
     //% weight=100
-    export function md(dir: string) {
-        if (dirList.indexOf(currentDir + "/" + dir + "/") === -1 && !dir.includes("/")) {
-            dirList.push(currentDir + "/" + dir + "/")
+    export function del(file: string) {
+        if (fileList.indexOf(file) !== -1) {
+            const indexOfFile: number = fileList.indexOf(file)
+            fileList.splice(indexOfFile, 1)
+            contentList.splice(indexOfFile, 1)
             return true
         } else {
             return false
@@ -65,30 +91,5 @@ namespace fs {
     //% weight=100
     export function pwd() {
         return currentDir
-    }
-
-    //% block="del"
-    //% weight=100
-    export function del(file: string) {
-        if (fileList.indexOf(file) !== -1){
-            const indexOfFile: number = fileList.indexOf(file)
-            fileList.splice(indexOfFile, 1)
-            contentList.splice(indexOfFile, 1)
-            return true
-        } else {
-            return false
-        }
-    }
-
-    //% block="rd"
-    //% weight=100
-    export function rd(dir: string) {
-        if (dirList.indexOf(dir) !== -1) {
-            const indexOfDir: number = dirList.indexOf(dir)
-            dirList.splice(indexOfDir, 1)
-            return true
-        } else {
-            return false
-        }
     }
 }
