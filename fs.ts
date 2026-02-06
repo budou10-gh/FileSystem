@@ -1,7 +1,7 @@
 //% icon="/"
 //% color="#ffce59"
 //% block="FileSystem"
-namespace fileSystem {
+namespace fs {
     let currentDir = "./"
     let fileList: string[] = []
     let dirList: string[] = []
