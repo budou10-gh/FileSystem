@@ -15,9 +15,12 @@ namespace fs {
             return true
         } else if (dir == "../") {
             if(currentDir != "/"){
+                // Go to parent folder
+                // "/hoge/fuga/" -> ["", "hoge", "fuga", ""] -> ["", "hoge"] -> "/hoge/"
                 const pathArr = currentDir.split("/")
-                pathArr.pop() // Go to parent folder
-                pathArr.pop() // "/hoge/fuga/" -> ["", "hoge", "fuga", ""] -> ["", "hoge"] -> "/hoge/"
+                pathArr.pop()
+                pathArr.pop()
+                pathArr.push("")
                 currentDir = pathArr.join("/")
                 return true
             } else {
