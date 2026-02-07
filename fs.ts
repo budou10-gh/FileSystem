@@ -45,8 +45,8 @@ namespace fs {
     //% block="rd $dir"
     //% weight=100
     export function rd(dir: string) {
-        if (dirList.indexOf(dir) !== -1) {
-            const indexOfDir: number = dirList.indexOf(dir)
+        if (dirList.indexOf(currentDir + dir + "/") !== -1) {
+            const indexOfDir: number = dirList.indexOf(currentDir + dir + "/")
             dirList.splice(indexOfDir, 1)
             return true
         } else {
@@ -84,8 +84,8 @@ namespace fs {
     //% block="del $file"
     //% weight=100
     export function del(file: string) {
-        if (fileList.indexOf(file) !== -1) {
-            const indexOfFile: number = fileList.indexOf(file)
+        if (fileList.indexOf(currentDir + file) !== -1) {
+            const indexOfFile: number = fileList.indexOf(currentDir + file)
             fileList.splice(indexOfFile, 1)
             contentList.splice(indexOfFile, 1)
             return true
