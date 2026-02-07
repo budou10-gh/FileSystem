@@ -103,12 +103,16 @@ namespace fs {
         const crnt_fileList = fileList.filter((item) => {
             return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 2 == currentDir.split("/").length - 1
         })
+        console.log("Debug: crnt_dirList == " + crnt_dirList)
+        console.log("Debug: crnt_fileList == " + crnt_fileList)
         crnt_dirList.forEach((item) => {
             item = item.slice(0, currentDir.length)
         })
         crnt_fileList.forEach((item) => {
             item = item.slice(0, currentDir.length)
         })
+        console.log("Debug: crnt_dirList == " + crnt_dirList)
+        console.log("Debug: crnt_fileList == " + crnt_fileList)
         return crnt_dirList.concat(crnt_fileList)
     }
 
