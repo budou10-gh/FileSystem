@@ -98,10 +98,10 @@ namespace fs {
     //% weight=100
     export function dir() {
         const crnt_dirList = dirList.filter((item) => {
-            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 2 == currentDir.split("/").length - 2
+            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 2 == currentDir.split("/").length - 1
         })
         const crnt_fileList = fileList.filter((item) => {
-            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 2 == currentDir.split("/").length - 1
+            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 1 == currentDir.split("/").length - 1
         })
         console.log("Debug: crnt_dirList == " + JSON.stringify(crnt_dirList))
         console.log("Debug: crnt_fileList == " + JSON.stringify(crnt_fileList))
