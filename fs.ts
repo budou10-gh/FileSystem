@@ -118,8 +118,3 @@ namespace fs {
         return currentDir
     }
 }
-
-// TODO
-// Dirでの処理をUNIXに近づける
-// 以上。
-// 肩の力抜いて作業しろよな。
