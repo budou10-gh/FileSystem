@@ -98,10 +98,16 @@ namespace fs {
     //% weight=100
     export function dir() {
         const crnt_dirList = dirList.filter((item) => {
-            return item.slice(0, currentDir.length) === currentDir
+            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 2 == currentDir.split("/").length - 2
         })
         const crnt_fileList = fileList.filter((item) => {
-            return item.slice(0, currentDir.length) === currentDir
+            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 2 == currentDir.split("/").length - 1
+        })
+        crnt_dirList.forEach((item) => {
+            item = item.slice(0, currentDir.length)
+        })
+        crnt_fileList.forEach((item) => {
+            item = item.slice(0, currentDir.length)
         })
         return crnt_dirList.concat(crnt_fileList)
     }
@@ -112,3 +118,8 @@ namespace fs {
         return currentDir
     }
 }
+
+// TODO
+// Dirでの処理をUNIXに近づける
+// 以上。
+// 肩の力抜いて作業しろよな。
