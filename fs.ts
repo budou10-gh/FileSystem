@@ -8,7 +8,7 @@ namespace fs {
     let contentList: string[] = []
 
     function startsWith(str: string, str2: string){
-        return str.slice(str2.length) === str2
+        return str.slice(0, str2.length) === str2
     }
 
     //% block="cd $dir"
