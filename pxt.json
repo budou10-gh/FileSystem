@@ -1,6 +1,6 @@
 {
     "name": "FileSystem",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "description": "A simple file system extension for MakeCode Arcade.",
     "dependencies": {
         "device": "*"
