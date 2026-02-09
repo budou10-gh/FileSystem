@@ -7,6 +7,10 @@ namespace fs {
     let dirList: string[] = []
     let contentList: string[] = []
 
+    function startsWith(str: string, str2: string){
+        return str.slice(str2.length) === str2
+    }
+
     //% block="cd $dir"
     //% weight=100
     export function cd(dir: string) {
@@ -104,18 +108,20 @@ namespace fs {
     //% weight=100
     export function dir() {
         const crnt_dirList = dirList.filter((item) => {
-            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 2 == currentDir.split("/").length - 1
+            return startsWith(item, currentDir) && item.split("/").length - 2 == currentDir.split("/").length - 1
         })
         const crnt_fileList = fileList.filter((item) => {
-            return item.slice(0, currentDir.length) === currentDir && item.split("/").length - 1 == currentDir.split("/").length - 1
+            return startsWith(item, currentDir) && item.split("/").length - 1 == currentDir.split("/").length - 1
         })
-        crnt_dirList.forEach((item) => {
-            item = item.slice(0, currentDir.length)
+        let new_crnt_dirList: string[] = []
+        let new_crnt_fileList: string[] = []
+        crnt_dirList.forEach((item, index) => {
+            new_crnt_dirList[index] = item.slice(0, currentDir.length)
         })
-        crnt_fileList.forEach((item) => {
-            item = item.slice(0, currentDir.length)
+        crnt_fileList.forEach((item, index) => {
+            new_crnt_fileList[index] = item.slice(0, currentDir.length)
         })
-        return crnt_dirList.concat(crnt_fileList)
+        return new_crnt_dirList.concat(new_crnt_fileList)
     }
 
     //% block="pwd"
