@@ -49,13 +49,14 @@ namespace fs {
     //% block="rd $dir"
     //% weight=100
     export function rd(dir: string) {
-        if (dirList.indexOf(currentDir + dir + "/") !== -1) {
-            const dirPath = currentDir + dir + "/"
+        const dirPath = currentDir + dir + "/"
+        if (dirList.indexOf(dirPath) !== -1) {
             const indexOfDir: number = dirList.indexOf(dirPath)
             dirList.splice(indexOfDir, 1)
             for (let i = 0; i < fileList.length; i++){
-                if (fileList[i].slice(0, dirPath.length) == dirPath){
+                if (startsWith(fileList[i], dirPath)){
                     fileList.splice(i, 1)
+                    i--
                 }
             }
             return true
@@ -113,16 +114,14 @@ namespace fs {
         const crnt_fileList = fileList.filter((item) => {
             return startsWith(item, currentDir) && item.split("/").length - 1 == currentDir.split("/").length - 1
         })
-        console.log(JSON.stringify(crnt_dirList) + "/" + JSON.stringify(crnt_fileList))
         let new_crnt_dirList: string[] = []
         let new_crnt_fileList: string[] = []
         crnt_dirList.forEach((item, index) => {
-            new_crnt_dirList[index] = item.slice(0, currentDir.length)
+            new_crnt_dirList[index] = item.slice(currentDir.length)
         })
         crnt_fileList.forEach((item, index) => {
-            new_crnt_fileList[index] = item.slice(0, currentDir.length)
+            new_crnt_fileList[index] = item.slice(currentDir.length)
         })
-        console.log(JSON.stringify(new_crnt_dirList) + "/" + JSON.stringify(new_crnt_fileList))
         return new_crnt_dirList.concat(new_crnt_fileList)
     }
 
