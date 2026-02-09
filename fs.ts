@@ -46,8 +46,14 @@ namespace fs {
     //% weight=100
     export function rd(dir: string) {
         if (dirList.indexOf(currentDir + dir + "/") !== -1) {
-            const indexOfDir: number = dirList.indexOf(currentDir + dir + "/")
+            const dirPath = currentDir + dir + "/"
+            const indexOfDir: number = dirList.indexOf(dirPath)
             dirList.splice(indexOfDir, 1)
+            for (let i = 0; i < fileList.length; i++){
+                if (fileList[i].slice(0, dirPath.length) == dirPath){
+                    fileList.splice(i, 1)
+                }
+            }
             return true
         } else {
             return false
