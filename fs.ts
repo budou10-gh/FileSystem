@@ -122,6 +122,7 @@ namespace fs {
         crnt_fileList.forEach((item, index) => {
             new_crnt_fileList[index] = item.slice(0, currentDir.length)
         })
+        console.log(JSON.stringify(new_crnt_dirList) + "/" + JSON.stringify(new_crnt_fileList))
         return new_crnt_dirList.concat(new_crnt_fileList)
     }
 
