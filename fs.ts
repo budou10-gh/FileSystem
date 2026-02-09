@@ -113,6 +113,7 @@ namespace fs {
         const crnt_fileList = fileList.filter((item) => {
             return startsWith(item, currentDir) && item.split("/").length - 1 == currentDir.split("/").length - 1
         })
+        console.log(JSON.stringify(crnt_dirList) + "/" + JSON.stringify(crnt_fileList))
         let new_crnt_dirList: string[] = []
         let new_crnt_fileList: string[] = []
         crnt_dirList.forEach((item, index) => {
